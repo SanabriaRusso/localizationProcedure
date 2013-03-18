@@ -7,5 +7,7 @@ section2/figures/*
 *.log
 *~
 *.aux
-*.div
+*.dvi
 *.bbl
+*.swp
+*.blg
