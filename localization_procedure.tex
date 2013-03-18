@@ -20,6 +20,25 @@
 %Ignores \vbox errors below the level of 10000
 \vbadness=10000
 \hbadness=10000
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 %opening
@@ -71,26 +90,26 @@
 WSNs, Localization, Multilateration, Bounding-Box.
 \end{IEEEkeywords}
 
-\section{Pending corrections}
-\textcolor{blue}{It is useful to put the corrections to be made at the beginning of the document, so every time it is seen, you can remember what is left to be done.}
+\section*{Pending corrections}
+It is useful to put the corrections to be made at the beginning of the document, so every time it is seen, you can remember what is left to be done.
 
-\subsection{First run}
+\subsection*{First run}
 \begin{enumerate}
-	\item\textcolor{blue}{Before doing any content correction, it is recommended to do a spelling revision.}
-	\item\textcolor{blue}{Define composability at the beginning of the paper to avoid confusions.}
-	\item\textcolor{blue}{Make sure the results are correctly mentioned in the introduction. According to reviewer 2, there is no clear link on how they are achieved.}
-	\item\textcolor{blue}{Redefine what is the main goal of the paper? How does it improve over [3]?} \textcolor{red}{I think the main goal is a more flexible solution to the composability of localization protocols.}
-	\item\textcolor{blue}{For the above, reviewer 2 provides the following alternative: how the decision process can be modified? and with what cost? This should be clear if one of the first aim is to allow the use of more localization protocols.}
-	
+	\item Before doing any content correction, it is recommended to do a spelling revision.
+	\item Define composability at the beginning of the paper to avoid confusions.
+	\item Make sure the results are correctly mentioned in the introduction. According to reviewer 2, there is no clear link on how they are achieved.
+	\item Redefine what is the main goal of the paper? How does it improve over [3]? I think the main goal is a more flexible solution to the composability of localization protocols.
+	\item For the above, reviewer 2 provides the following alternative: how the decision process can be modified? and with what cost? This should be clear if one of the first aim is to allow the use of more localization protocols.
+
 \end{enumerate}
 
 
 \section{Introduction} \label{introduction}
   \input{section1/intro}
-  
+
 \section{Literature Review} \label{literature}
   \input{section2/literature}
-  
+
 \section{Localization Procedure} \label{locProc}
   \input{section3/locProc}
 
@@ -99,9 +118,9 @@ WSNs, Localization, Multilateration, Bounding-Box.
 
 \section{Conclusions} \label{conclusions}
   \input{section5/conclusions}
-  
+
 \bibliographystyle{Classes/IEEEtran}
 \bibliography{IEEEabrv,ref}
-  
+
 \end{document}
 
