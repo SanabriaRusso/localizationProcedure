@@ -1,0 +1,11 @@
+*HOWTO.pdf
+*OLD.tex
+FINAL/
+pmeData*
+*.tex.backup
+section2/figures/*
+*.log
+*~
+*.aux
+*.div
+*.bbl
