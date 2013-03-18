@@ -1,54 +1,35 @@
-Range-based and range-free localization protocols use different set of techniques in order to estimate the position of an \emph{unknown} node~\cite{rang:loc:techniques}. Range-based localization protocols gather information about the received signals as indicators of range towards the transmitter. Ranging techniques are often combined with localization techniques like trilateration and multilateration to derive a point where the \emph{unknown} node should lay. On the other hand, range-free localization protocols use the effective connections, usually of the type \emph{unknown-Anchor}, to draw a plane that represents the intersection of the coverage areas of such \emph{Anchors}. This area is composed of all the possible points where the \emph{unknown} node is probably located.
+Range-based and range-free localization protocols use different set of techniques in order to estimate the position of an \emph{unknown} node~\cite{rang:loc:techniques}. Range-based localization protocols gather information about the received signal strength as indicator of range towards the transmitter. Ranging techniques are often combined with localization techniques like trilateration and multilateration to derive a point where the \emph{unknown} node probably lies. On the other hand, range-free localization protocols use the effective connections, usually of the type \emph{unknown-Anchor}, to draw a plane that represents the intersection of the coverage areas of such \emph{Anchors}. This area is composed of all the possible points where the \emph{unknown} node is probably located.
 
 In this section, some well-used ranging and localization techniques are reviewed.
 
 \subsection{RSSI ranging technique} \label{rssi}
-Commercially available nodes, like the Crossbow TelosB~\cite{telosB}, are capable of reporting RSSI measures. This metric is related to the received signal power at the node and although it is heavily affected by channel uncertainties (like shadowing and multi-path), it can be used to make rough range estimations~\cite{rang:loc:techniques}.
-
-% \begin{equation} \label{eq:rssi}
-%  P^{ij}_{\rm{r_{x}}}(t) = P^{i}_{\rm{t_{x}}} - 10vlog(d_{ij}) + X_{ij}(t)
-% \end{equation}
-% 
-% In (\ref{eq:rssi}), $P^{ij}_{\rm{r_{x}}}(t)$ represents the received power at node $j$, transmitted at power $P^{i}_{\rm{t_{x}}}$ by node $i$. Inside the logarithm, $d_{ij}$ is the distance from the transmitter $i$ to the receiver $j$, $v$ act as the attenuation constant and $X_{ij}$ is the uncertainty factor due to shadowing or multi-path. If $P^{i}_{\rm{t_{x}}}$ is known, with $P^{ij}_{\rm{r_{x}}}(t)$ one can make an estimation of the distance to the transmitter, which can be very accurate in simulations scenarios with a free space propagation model ($v=0,\  X_{ij}(t)=0$).
+Commercially available nodes, like the Crossbow TelosB~\cite{telosB}, are capable of reporting RSSI measures. This metric is related to the received signal strength at the node and although it is heavily affected by channel uncertainties (like shadowing and multi-path), it can be used to make rough range estimations~\cite{rang:loc:techniques}.
 
 Ranging techniques incur in additional battery consumption since multiple Beacon readings should be performed in order to reduce ranging errors; which requires an increased channel listening time.
 
 \subsection{Trilateration and multilateration localization techniques} \label{lateration}
 Range-based localization protocols use range measurements as input to more complex localization techniques. Trilateration places the \emph{unknown} node $j$ at the edge of a circumference of radius $d_{ij}$, where $i$ is usually an \emph{Anchor} placed at the center of the circumference. When three \emph{Anchors} ($i=1,2,3$) are connected to node $j$, the intersection of these circumferences results in the position of the node.
 
-Multilateration also uses range measurements, quite differently this technique consists on minimizing a set of $n$ equations ($i=1,2,3,...,n$) as shown in Eq.~(\ref{eq:lateration}).
+Multilateration also uses range measurements, quite differently this technique consists on minimizing a set of $n$ equations ($i=1,2,3,...,n$) as shown in~(\ref{eq:lateration}).
 
 \begin{equation}\label{eq:lateration}
  f_{i}(x_{j},y_{j})=d_{ij}-\sqrt{(x_{i}-x_{j})^2+(y_{i}-y_{j})^2}
 \end{equation}
 
-In Eq.~(\ref{eq:lateration}), $(x_{i},y_{i})$ are \emph{Anchor} $i$'s coordinates and $(x_{j},y_{j})$ represents the \emph{unknown} node's estimated position~\cite{rang:loc:techniques}.
+In~(\ref{eq:lateration}), $(x_{i},y_{i})$ are \emph{Anchor} $i$'s coordinates and $(x_{j},y_{j})$ represents the \emph{unknown} node's estimated position~\cite{rang:loc:techniques}.
 
-These localization techniques rely on exact distance measurements and the resulting error is directly related to that of the ranging technique used. That is, although trilateration's mathematical solution is a point on a plane, the estimation carries an underlying error resulting from inexact range measurements. As it also happens with multilateration~\cite{AkyildizWSNs}.
+These localization techniques rely on exact distance measurements and the resulting error is directly related to the ranging technique used. That is, although trilateration's mathematical solution is a point on a plane, the estimation carries an underlying error resulting from inexact range measurements. As it also happens with multilateration~\cite{AkyildizWSNs}.
 
-Furthermore, Lateration incurs in additional battery consumption mostly related to the minimization of a set of equations like the one in Eq.~(\ref{eq:lateration}) and the ranging technique used. As mentioned in~\cite{laterationSpecs}, this additional energy consumption with RSSI ranging technique and four \emph{Anchors} is of around~$1.961$~mJ per execution.
+Furthermore, localization techniques like Lateration incur in additional battery consumption mostly related to the minimization of a set of equations like~(\ref{eq:lateration}) and the ranging technique used. As mentioned in~\cite{laterationSpecs}, this additional energy consumption with RSSI ranging technique and four \emph{Anchors} is of around~$1.961$~mJ per execution of the Lateration algorithm.
 
 \subsection{Bounding-Box}
-This method consists on placing the \emph{unknown} node at the intersection of the coverage areas generated by the surrounding \emph{Anchors}.
+This range-free protocol consists on placing the \emph{unknown} node at the intersection of the coverage areas generated by the surrounding \emph{Anchors}. The resulting intersection is usually called Location Area (LA). 
 
-% (see Figure \ref{fig:bounding-box}).
-% 
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=6cm]{section2/figures/bounding_box.eps}
-%   \caption{Bounding-Box example
-%     \label{fig:bounding-box}}
-% \end{figure}
-
-% \begin{equation} \label{eq:bounding-box}
-%  [\max(x_{i}-d_{ij}),\max{y_{i}-d_{ij}}]\times[\min(x_{i}-d_{ij}),\min(y_{i}-d_{ij})]\  ;i=1,...,n
-% \end{equation}
-
-% The shaded zone in Figure~\ref{fig:bounding-box} is called Location Area (LA) and 
-
-The resulting intersection is usually called Location Area (LA). It can be further reduced by defining constraints like angle of arrival or variable radii of the circles (applying some ranging technique)~\cite{convexEstimation}. Nevertheless, these added constraints were not considered in this work mainly because the former requires specialized hardware and both violate the definition of range-free localization protocols.
+%Nevertheless, these added constraints were not considered in this work mainly because the former requires specialized hardware and both violate the definition of range-free localization protocols.
 
 Because the \emph{unknown} node does not need to perform ranging measurements, this technique incurs in a reduced energy consumption when compared to other range-based protocols, like Lateration.
+
+Optionally, the LA can be further reduced defining constraints based on ranging techniques; like angle of arrival or considering variable coverage areas. Both approaches are proposed and implemented in~\cite{convexEstimation}. 
 
 \subsection{Composability of localization protocols}
 The approach proposed by the authors of~\cite{composability} is based on the observation than current protocols either make simplifying assumptions (Line of Sight (LoS) scenarios, exact measurements, high \emph{Anchor} density, known distribution of the nodes) or require sophisticated hardware (like in the case of Angle of Arrival (AoA) or the tight synchronization needed in Time of Arrival (ToA) Ranging Techniques~\cite{AkyildizWSNs}). They also argue that localization protocols that do not make these assumptions provide greatly inaccurate results.
@@ -64,4 +45,4 @@ Their approach consists in storing multiple localization protocols in every node
 %     \label{fig:composability}}
 % \end{figure}
 
-Although this approach succeeded at combining different localization protocols, there is lack of detailed information regarding which protocols are to be executed first and why. Also, its impact on network lifetime and convergence time is left as a future research topic.
+Although this approach succeeded at combining different localization protocols, there is lack of detailed information regarding which protocols are to be executed first and why. Also, its impact on network lifetime is left as a future research topic.
