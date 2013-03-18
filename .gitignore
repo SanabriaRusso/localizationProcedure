@@ -12,3 +12,4 @@ section2/figures/*
 *.bbl
 *.swp
 *.blg
+*_diff.tex
