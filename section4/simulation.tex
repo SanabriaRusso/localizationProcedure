@@ -1,6 +1,6 @@
 This work considers two well-known distributed localization protocols for testing the proposed localization procedure: Lateration and Bounding-Box. Some of their differences are highlighted in Table~\ref{table:protocols}.
 
-\begin{table}[H]
+\begin{table}[tb]
   \centering
   \begin{threeparttable}[t]
     \caption{Localization Protocols' characteristics}
@@ -24,11 +24,13 @@ This work considers two well-known distributed localization protocols for testin
 In order to reveal the impact of the proposed localization procedure in terms of battery consumption, number of located nodes and localization error; a thousand simulations are performed per \emph{Anchor} density (from 10\% up to 100\% at 10\% increments) using a customized extension of the SENSE network simulator~\cite{sense}. The hardware and Medium Access (MAC) layer parameters implemented are presented in Table~\ref{tab:MAC_param}. Two propagation models are used: free space and a time-invariant and symmetrical shadowing model (from here on: Free space and Shadowing models respectively). The characteristics of the testing plane are highlighted in Table~\ref{tab:testingPlanes}. Nodes are randomly and uniformly distributed over the testing plane (as in Figure~\ref{fig:topology}) and the position estimation is based only on the received location information from Beacons. This is done to evaluate different \emph{Anchor} densities against a single \emph{unknown} node (i.e. 100\% \emph{Anchor} density means 
 that a determined node will receive Beacons from all its neighbors and use the received location information to estimate its position, regardless if the recipient is an \emph{Anchor}).
 
-The deployment considerations are set to require coarse network lifetime and coarse accuracy, which can be achieved with the tested localization protocols detailed in Table~\ref{table:protocols}. Also, the PME deterministically selects the appropriate localization protocol based only on the satisfaction of each of their best-working environmental conditions.
+To contrast the behavior of the localization procedure against the individual execution of the proposed localization protocols, the deployment considerations are set accordingly with the capabilities of the protocols (large network lifetime and coarse accuracy). The PME deterministically selects the appropriate protocols as it is explained in Section~\ref{PME}.
+
+%The deployment considerations are set to require coarse network lifetime and coarse accuracy, which can be achieved with the tested localization protocols detailed in Table~\ref{table:protocols}. Also, the PME deterministically selects the appropriate localization protocol based only on the satisfaction of each of their best-working environmental conditions.
 
 Results are shown with 99\% confidence intervals.
 
-\begin{table}[htbp]
+\begin{table}[tb]
   \begin{threeparttable}[t]
     \caption{Hardware and CSMA/CA Parameters}
     \label{tab:MAC_param}
@@ -58,7 +60,7 @@ Results are shown with 99\% confidence intervals.
 
 % The upper layer header shown in Table~\ref{tab:MAC_param} represents the data size of the Beacon packet, composed of the \emph{Anchor}'s position and other simulator-related parameters.
 
-\begin{table}[htbp]
+\begin{table}[tb]
   \centering
   \begin{threeparttable}[t]
   \caption{Characteristics of the testing plane based on~\cite{convexEstimation,fieldDimmensions}}
@@ -75,9 +77,9 @@ Results are shown with 99\% confidence intervals.
   \end{threeparttable} 
 \end{table}
 
-Each time a node connects with a new \emph{Anchor} (effectively receives its Beacons), the PME decides which localization protocol to execute. In the proposed simulation if more than three \emph{Anchors} are connected then Lateration is executed, otherwise Bounding-Box is selected. Further connections will lead the PME to reevaluate the node's situation and sequentially execute the appropriate localization protocol. As for Lateration, this can go on until six \emph{Anchors} are connected. Beyond this number, the accuracy refinements are not as significant to justify the penalty in battery consumption~\cite{beaconLimits}.
+Each time a node connects with a new \emph{Anchor} (effectively receives its Beacons), the PME decides which localization protocol to execute. In the proposed simulation (and following Table~\ref{table:protocols}) if more than three \emph{Anchors} are connected to the \emph{unknown} node, then the PME will execute Lateration, otherwise Bounding-Box is selected. Further connections will lead the PME to reevaluate the node's situation and sequentially execute the appropriate localization protocol. As for Lateration, this can go on until six \emph{Anchors} are connected. Beyond this number, the accuracy refinements are not as significant to justify the penalty in battery consumption~\cite{beaconLimits}.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/topology.eps}
   \caption{Example random deployment of nodes
@@ -85,9 +87,9 @@ Each time a node connects with a new \emph{Anchor} (effectively receives its Bea
 \end{figure}
 
 \subsection{The effect of the tested channel models on the number of connection to \emph{Anchors}}\label{channel_considerations}
-In Figure~\ref{fig:channelAndBeacons}, it is appreciated how the different propagation models affect the reception of Beacon packets.
+In Figure~\ref{fig:channelAndBeacons}, it is appreciated how the different propagation models affect the reception of Beacon packets; which in this evaluation is the sole environmental condition considered by the PME.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/avgBeaconPerNode.eps}
   \caption{Average number of \emph{Anchors} connected to each node}
@@ -104,7 +106,7 @@ These metrics reflect the protocols' impact on battery consumption, number of lo
 \subsubsection{Battery consumption}\label{individual_battery_consumption}
 apart from the battery consumption related with the normal operation of the nodes (listening the channel and Beacon reception), Lateration has an additional battery consumption associated with the execution of the algorithm (as mentioned in Section~\ref{lateration}). This seems to be increased in the Free space model because of the greater average number of \emph{Anchors} connected to each node (see Figure~\ref{fig:channelAndBeacons}~and~\ref{fig:battery}).
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/battery.eps}
   \caption{Battery consumption of the individual execution of Lateration and Bounding-Box
@@ -118,7 +120,7 @@ In the case of Bounding-Box, there is not additional battery consumption related
 \subsubsection{Located nodes}
 these are the nodes that successfully execute either of the localization protocols, resulting in a location estimation (see Figure~\ref{fig:locNodes}).
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/locatedNodes.eps}
   \caption{Number of located nodes per tested localization protocol
@@ -132,7 +134,7 @@ Bounding-Box shows higher number of located nodes at 30\% \emph{Anchor} density 
 \subsubsection{Error}
 the proposed measure of error only considers nodes that were able to execute either of the localization protocols. It is defined as the straight line distance (in meters) between the node's estimated location and its real position (see Figure~\ref{fig:error}).
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/error.eps}
   \caption{Straight line error from the estimated to the real node's position
@@ -151,7 +153,7 @@ As mentioned in Section~\ref{PME}, PME will pick a localization protocol that gi
 \subsubsection{Battery consumption}
 the difference between the battery consumption associated with the proposed localization procedure and that of Lateration is very small. For this reason they are considered similar (see Figure~\ref{pme:battery}).
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/pmeBat.eps}
   \caption{Localization procedure's associated battery consumption when compared with Lateration
@@ -163,7 +165,7 @@ Bounding-Box adds negligible battery consumption (as mentioned in Section~\ref{i
 \subsubsection{Located nodes}\label{locProc_locatedNodes}
 the sum of located nodes (either with Lateration or Bounding-Box) reaches 99\% at \emph{Anchor} densities around 30\% (see Figure~\ref{pme:locNodes}).
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/pmeLocNodes.eps}
   \caption{Located nodes with the proposed localization procedure
@@ -177,18 +179,15 @@ The number of located nodes with the proposed localization procedure exceeds tho
 \subsubsection{Error}
 This measure illustrates the average distance in meters between each node's estimated location and its real position. The prefix \emph{Loc. Proc.} in Figure~\ref{pme:error} highlights the fact that these are results gathered from the execution of the localization procedure.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{section4/figures/pmeAverageErrorPerProtocol.eps}
   \caption{Associated error after protocol selection
   \label{pme:error}}
 \end{figure}
 
-Figure~\ref{pme:error} displays the average error for each type of channel model, also it is considered the number of nodes executing either Lateration or Bounding-Box. That is, $Avg_{a}^{ch} = (E_{L}~n_{L} + E_{BB}~n_{BB}) /n_{L}+n_{BB}$. Where $ch$ refers to the type of channel model and $a$ to a determined \emph{Anchor} density, $n_{L}$ are the number of nodes executing Lateration while $n_{BB}$ are the same but in the case of Bounding-Box. $E_{L}$ and $E_{BB}$ refer to the average line error for nodes executing Lateration and Bounding-Box respectively.
+Figure~\ref{pme:error} displays the average error for each type of channel model. It also considers the number of nodes executing either Lateration or Bounding-Box. So the average error is expressed as: $Avg_{A}^{ch} = (E_{L}~n_{L} + E_{BB}~n_{BB}) /n_{L}+n_{BB}$. Where $Avg_{A}^{ch}$ is the average error with a $ch$ channel model and $A$ \emph{Anchor} density. $n_{L}$ are the number of nodes executing Lateration while $n_{BB}$ are the same but in the case of Bounding-Box. $E_{L}$ and $E_{BB}$ refer to the average line error for nodes executing Lateration and Bounding-Box respectively.
 
-Due to increased ranging measurement errors, the estimation in the Shadowing model presents more erroneous estimations than the Free space model, as in Figure~\ref{fig:error}. Although at $30$\% \emph{Anchor} density the localization procedure incurs in greater average error as compared with the individual execution of Lateration, it manages to increase the average number of located nodes. This is significantly important, given that without the execution of the localization procedure many nodes were to be left without a location estimation, or what it is the same as having an undetermined measure of error.
-
-% In the case of the execution of Bounding-Box, as Beacon density increases more nodes are matched to execute Lateration, especially in the Free Space model. This results in a decreasing average of the error for Bounding-Box given that nodes matched to Lateration return a zero in the field of Bounding-Box associated error.
+Due to increased ranging measurement errors, the estimation in the Shadowing model presents more erroneous estimations than the Free space model, as in Figure~\ref{fig:error}. Although at $30$\% \emph{Anchor} density the localization procedure incurs in greater average error as compared with the individual execution of Lateration, it manages to increase the average number of located nodes. This is significantly important, given that without the localization procedure many nodes were to be left without a location estimation, or what it is the same as having an undetermined measure of error.
 
 A carefully selected set of localization protocols working with different ranges of environmental conditions, ensures that most of the nodes in the deployment get located. In the testings presented in this section, Bounding-Box is the responsible for locating the most isolated nodes, while Lateration focuses on accuracy. Selecting and characterizing more accurate protocols will reduce the errors and maintain the high number of located nodes that the localization procedure achieves. All of this while preserving the levels of battery consumption similar to the individual execution of the selected protocols.
-
