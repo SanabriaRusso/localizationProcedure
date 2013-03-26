@@ -87,7 +87,7 @@ Each time a node connects with a new \emph{Anchor} (effectively receives its Bea
 \end{figure}
 
 \subsection{The effect of the tested channel models on the number of connection to \emph{Anchors}}\label{channel_considerations}
-In Figure~\ref{fig:channelAndBeacons}, it is appreciated how the different propagation models affect the reception of Beacon packets; which in this evaluation is the sole environmental condition considered by the PME.
+In Figure~\ref{fig:channelAndBeacons}, it is appreciated how the different propagation models affect the reception of Beacons; which in this evaluation is the sole environmental condition considered by the PME.
 
 \begin{figure}[tb]
   \centering
@@ -186,7 +186,7 @@ This measure illustrates the average distance in meters between each node's esti
   \label{pme:error}}
 \end{figure}
 
-Figure~\ref{pme:error} displays the average error for each type of channel model. It also considers the number of nodes executing either Lateration or Bounding-Box. So the average error is expressed as: $Avg_{A}^{ch} = (E_{L}~n_{L} + E_{BB}~n_{BB}) /n_{L}+n_{BB}$. Where $Avg_{A}^{ch}$ is the average error with a $ch$ channel model and $A$ \emph{Anchor} density. $n_{L}$ are the number of nodes executing Lateration while $n_{BB}$ are the same but in the case of Bounding-Box. $E_{L}$ and $E_{BB}$ refer to the average line error for nodes executing Lateration and Bounding-Box respectively.
+Figure~\ref{pme:error} displays the average error for each type of channel model. It also considers the number of nodes executing either Lateration or Bounding-Box. So, the average error is expressed as: $Avg_{A}^{ch} = (E_{L}~n_{L} + E_{BB}~n_{BB}) /n_{L}+n_{BB}$, where $Avg_{A}^{ch}$ is the average error when a certain channel model ($ch$) is used and the density of \emph{Anchor} nodes is $A$. The parameter $n_{L}$ refers to the number of nodes executing Lateration while $n_{BB}$ are the same but in the case of Bounding-Box. $E_{L}$ and $E_{BB}$ refer to the average line error for nodes executing Lateration and Bounding-Box respectively.
 
 Due to increased ranging measurement errors, the estimation in the Shadowing model presents more erroneous estimations than the Free space model, as in Figure~\ref{fig:error}. Although at $30$\% \emph{Anchor} density the localization procedure incurs in greater average error as compared with the individual execution of Lateration, it manages to increase the average number of located nodes. This is significantly important, given that without the localization procedure many nodes were to be left without a location estimation, or what it is the same as having an undetermined measure of error.
 

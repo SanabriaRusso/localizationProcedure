@@ -2,12 +2,19 @@ The composability of localization protocols proposed in~\cite{composability} tri
 
 We propose a localization procedure which focuses on considering the protocols' best-working environmental conditions and the WSN deployment considerations in order to make the most beneficial protocol selection instead of a static sequential execution.
 
-\begin{figure*}[tb]
+%\begin{figure*}[tb]
+%  \centering
+%  \includegraphics[width=0.83\linewidth]{section3/figures/LocProc_small.eps}
+%  \caption{Localization procedure: architecture
+%  \label{fig:LocProc}}
+%\end{figure*}
+
+\begin{figure}[tb]
   \centering
-  \includegraphics[width=0.83\linewidth]{section3/figures/LocProc_small.eps}
+  \includegraphics[width=\linewidth]{section3/figures/LocProc_small.eps}
   \caption{Localization procedure: architecture
   \label{fig:LocProc}}
-\end{figure*}
+\end{figure}
 
 \subsection{Best-working environmental conditions}\label{bestWorkingConditions}
 Some protocols perform better than others under different conditions. For instance, some \emph{Anchor}-based localization techniques (like the ones described in Section~\ref{literature}) require more connections to \emph{Anchors} than others~\cite{rang:loc:techniques}.
@@ -22,8 +29,8 @@ Each deployment has defined goals and restrictions, like: long/coarse network li
 Each localization protocol has its best-working environmental conditions, that when complied allow the protocol to provide satisfactory results and follow the deployment considerations.
 
 \subsection{Pattern Matching Engine (PME)}\label{PME}
-Is a module inside the localization procedure responsible for translating the \emph{unknown} node's environmental conditions into localization protocols than could comply with the deployment considerations. That is, for certain deployment considerations the PME will select a set of appropriate localization protocols where their best-working environmental conditions are met. If all the conditions are satisfied, the PME prioritizes the protocol that better complies with the deployment considerations. 
+The PME is a module inside the localization procedure responsible for translating the \emph{unknown} node's environmental conditions into localization protocols than could comply with the deployment considerations. That is, for certain deployment considerations the PME will select a set of appropriate localization protocols where their best-working environmental conditions are met. If all the conditions are satisfied, the PME prioritizes the protocol that better complies with the deployment considerations. 
 
-The architecture of the localization procedure is shown in Fig.~\ref{fig:LocProc}, whence it can be appreciated the PME gathering environmental conditions and deployment considerations to select the appropriate localization protocols.
+The architecture of the localization procedure is shown in Fig.~\ref{fig:LocProc}, where it can be appreciated the PME gathering environmental conditions and deployment considerations to select the appropriate localization protocol.
 
 %shows an overview of the localization procedure's architecture and highlights the role of the PME.
